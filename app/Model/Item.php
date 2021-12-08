@@ -13,12 +13,7 @@ class Item extends Model
 
     public function pajak()
     {
-        return $this->hasMany(Pajak::class,"item_id","id")
-        ->select(
-            'id',
-            'nama',
-             DB::raw("concat(rate,'%') as rate")
-        );
+        return $this->hasMany(Pajak::class,"item_id");
     }
 
     public static function get()

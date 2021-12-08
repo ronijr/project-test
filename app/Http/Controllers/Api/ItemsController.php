@@ -85,15 +85,7 @@ class ItemsController extends Controller
             $item          = new Item;
             $item->nama    = $request->nama;
             $item->save();
-
-            foreach($request->pajak as $pajak_item)
-            {
-                $pajak          = new Pajak;
-                $pajak->item_id = $item->id;
-                $pajak->nama    = $pajak_item['nama'];
-                $pajak->rate    = $pajak_item['rate'];
-                $pajak->save();
-            }
+            $item->pajak()->createMany($request->pajak);
 
             $this->response = [
                 'code'      => 200,
@@ -179,15 +171,17 @@ class ItemsController extends Controller
         {
             $item->nama    = $request->nama;
             $item->save();
-
-            foreach($request->pajak as $pajak_item)
+            for($i = 0; $i<count($request->pajak); $i++)
             {
-                $pajak          = Pajak::updateOrCreate(['item_id'=>$item->id,'id'=>$pajak_item['id']]);
-                $pajak->item_id = $item->id;
-                $pajak->nama    = $pajak_item['nama'];
-                $pajak->rate    = $pajak_item['rate'];
-                $pajak->save();
+                if(!empty($item->pajak[$i]))
+                {
+                    $item->pajak[$i]->nama = $request->pajak[$i]['nama'];
+                    $item->pajak[$i]->rate = $request->pajak[$i]['rate'];
+                    $item->push();
+                }
+                
             }
+            
 
             $this->response = [
                 'code'      => 200,
@@ -230,7 +224,7 @@ class ItemsController extends Controller
         }
 
         $item  = Item::find($request->id);
-        $pajak = Pajak::where("item_id",$request->id)->get();
+       
         if(empty($item))
         {
             $this->response = [
@@ -246,10 +240,7 @@ class ItemsController extends Controller
         {
            
             $item->delete();
-            foreach($pajak as $pajak_item)
-            {
-                $pajak_item->delete();
-            }
+            $item->pajak()->delete();
 
             $this->response = [
                 'code'      => 200,
