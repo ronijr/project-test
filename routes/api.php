@@ -51,7 +51,7 @@ Route::group(
         'prefix'    => 'items',
         'namespace' => 'Api'
     ], function(){
-    Route::post('/',[
+    Route::post('list',[
         'uses' => 'ItemsController@list',
         'name' => 'items.list'
     ]);

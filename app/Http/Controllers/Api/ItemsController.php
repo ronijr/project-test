@@ -12,7 +12,24 @@ class ItemsController extends Controller
 
     public function list(Request $request)
     {
-        
+        $items = Item::all();
+        $data  = [];
+        foreach($items as $item)
+        {
+            $data[] = (object) [
+                'id'    => $item->id,
+                'nama'  => $item->nama,
+                'pajak' => $item->pajak
+            ];
+        }
+
+        $this->response = [
+            'code'    => 200,
+            'message' => 'success',
+            'data'    => $data
+        ];
+
+        return response()->json($this->response);
     }
 
     public function created(Request $request)
