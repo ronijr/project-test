@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "fd4e909a-6ccb-443b-ad0e-fae19d3c8485",
+		"name": "Project Test Olsera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\" : \"2\"\n\n\n  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/items/list"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\" :17,\n    \"nama\":\"dsd\",\n    \"pajak\" : [\n        {\n            \"id\":20,\n            \"nama\" :\"Pajak toko aja\",\n            \"rate\":30\n        },\n         {\n            \"id\":30,\n            \"nama\" :\"Pajak toko\",\n            \"rate\":40\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/items/edit"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"nama\":\"Celana panjang\",\n    \"pajak\" : [\n        {\n       \n            \"nama\" :\"pph\",\n            \"rate\":30\n        },\n         {\n          \n            \"nama\" :\"Pajak toko\",\n            \"rate\":40\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/items/add"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":17\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/items/delete"
+			},
+			"response": []
+		}
+	]
+}
