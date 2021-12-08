@@ -23,8 +23,14 @@ class Item extends Model
 
     public static function get()
     {
-        return Item::select('id','nama')
-        ->addSelect(DB::raw('GROUP_CONCAT((select * from tbl_pajak where item_id = tbl_m_items.id)) as pajak'))
+        return Item::select('m_items.id','m_items.nama')
+        ->addSelect(DB::raw("GROUP_CONCAT(JSON_OBJECT('id',tbl_pajak.id,'nama',tbl_pajak.nama,'rate',concat(tbl_pajak.rate,'%'))) as pajak"))
+        ->join('pajak',function($join){
+            $join->on('pajak.item_id','=','m_items.id');
+        })
+        ->groupBy('m_items.id','m_items.nama')
+        ->orderBy('m_items.created_at','desc')
         ->get();
+        
     }
 }

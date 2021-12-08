@@ -50,7 +50,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 200,
                 'message'   => 'Data berhasil disimpan',
-                'data'      => $pajak->first()
             ];
             DB::commit();
 
@@ -59,7 +58,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 500,
                 'message'   => 'Internal server error',
-                'data'      => []
             ];
             DB::rollback();
         }
@@ -118,7 +116,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 200,
                 'message'   => 'Data berhasil disimpan dan diperbaharui',
-                'data'      => $pajak->first()
             ];
             DB::commit();
 
@@ -127,7 +124,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 500,
                 'message'   => 'Internal server error',
-                'data'      => []
             ];
             DB::rollback();
         }
@@ -175,7 +171,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 200,
                 'message'   => 'Data berhasil dihapus',
-                'data'      => $pajak
             ];
 
             $pajak->delete();
@@ -185,7 +180,6 @@ class PajakController extends Controller
             $this->response = [
                 'code'      => 500,
                 'message'   => 'Internal server error',
-                'data'      => []
             ];
             DB::rollback();
         }
