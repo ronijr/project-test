@@ -12,7 +12,8 @@ class ItemsController extends Controller
 
     public function list(Request $request)
     {
-        $items = Item::all();
+        $items = Item::get();
+        dd($items);
         $data  = [];
         foreach($items as $item)
         {
@@ -36,7 +37,7 @@ class ItemsController extends Controller
     {
         
         $rules = [
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:255|string',
         ];
 
         $attributes = [
@@ -45,7 +46,8 @@ class ItemsController extends Controller
 
         $message    = [
             'required' => ':attribute tidak boleh kosong',
-            'max'      => ':attribute tidak boleh lebih dari 255 karakter'
+            'max'      => ':attribute tidak boleh lebih dari 255 karakter',
+            'string'   => ':attribute harus mengandung karakter',
         ];
 
         $validate = Validator::make($request->all(), $rules,$message, $attributes);
@@ -86,7 +88,7 @@ class ItemsController extends Controller
     {
         $rules = [
             'id'   => 'required|numeric',
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:255|string',
         ];
 
         $attributes = [
@@ -96,8 +98,9 @@ class ItemsController extends Controller
 
         $message    = [
             'required'   => ':attribute tidak boleh kosong',
-            'numeric'   => ':attribute harus angka',
-            'name.max'  => ':attribute tidak boleh lebih dari 255 karakter'
+            'numeric'    => ':attribute harus angka',
+            'name.max'   => ':attribute tidak boleh lebih dari 255 karakter',
+            'string'     => ':attribute harus mengandung karakter',
         ];
 
         $validate = Validator::make($request->all(), $rules,$message, $attributes);

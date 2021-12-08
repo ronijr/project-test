@@ -20,4 +20,11 @@ class Item extends Model
              DB::raw("concat(rate,'%') as rate")
         );
     }
+
+    public static function get()
+    {
+        return Item::select('id','nama')
+        ->addSelect(DB::raw('GROUP_CONCAT((select * from tbl_pajak where item_id = tbl_m_items.id)) as pajak'))
+        ->get();
+    }
 }

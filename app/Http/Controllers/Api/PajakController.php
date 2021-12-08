@@ -14,7 +14,7 @@ class PajakController extends Controller
     {
         
         $rules = [
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:255|string',
             'rate' => 'required|numeric',
             'item' => 'required|numeric'
         ];
@@ -26,8 +26,9 @@ class PajakController extends Controller
 
         $message    = [
             'required' => ':attribute tidak boleh kosong',
-            'numeric' => ':attribute harus angka',
-            'name.max' => ':attribute tidak boleh lebih dari 255 karakter'
+            'numeric'  => ':attribute harus angka',
+            'name.max' => ':attribute tidak boleh lebih dari 255 karakter',
+            'string'   => ':attribute harus mengandung karakter',
         ];
 
         $validate = Validator::make($request->all(), $rules,$message, $attributes);
@@ -70,7 +71,7 @@ class PajakController extends Controller
     {
         $rules = [
             'id'   => 'required|numeric',
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:255|string',
             'rate' => 'required|numeric',
             'item' => 'required|numeric'
         ];
@@ -83,8 +84,9 @@ class PajakController extends Controller
 
         $message    = [
             'required' => ':attribute tidak boleh kosong',
-            'numeric' => ':attribute harus angka',
-            'name.max' => ':attribute tidak boleh lebih dari 255 karakter'
+            'numeric'  => ':attribute harus angka',
+            'name.max' => ':attribute tidak boleh lebih dari 255 karakter',
+            'string'   => ':attribute harus mengandung karakter',
         ];
 
         $validate = Validator::make($request->all(), $rules,$message, $attributes);
@@ -145,7 +147,7 @@ class PajakController extends Controller
 
         $message    = [
             'required' => ':attribute tidak boleh kosong',
-            'numeric' => ':attribute harus angka',
+            'numeric'  => ':attribute harus angka',
             'name.max' => ':attribute tidak boleh lebih dari 255 karakter'
         ];
 
